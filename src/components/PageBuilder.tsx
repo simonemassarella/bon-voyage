@@ -214,7 +214,7 @@ export default function PageBuilder() {
               <p className="text-badge font-semibold text-brand">{loadError}</p>
             ) : (
               <p className="text-badge text-muted">
-                Vuoto o "home" = homepage reale. Compilato = pagina nuova o
+                Vuoto o «home» = homepage reale. Compilato = pagina nuova o
                 esistente da caricare.
               </p>
             )}
@@ -266,7 +266,7 @@ export default function PageBuilder() {
               ))}
             </div>
             <p className="text-badge text-muted">
-              Su una pagina caricata, "rimuovi X" o "sposta X in fondo"
+              Su una pagina caricata, «rimuovi X» o «sposta X in fondo»
               riscrivono il file eliminando solo quel blocco, senza toccare
               il resto del codice.
             </p>
