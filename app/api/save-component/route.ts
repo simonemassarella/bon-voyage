@@ -14,6 +14,14 @@ const RESERVED_SLUGS = new Set(["api", "book", "page-builder"]);
 const BLOCKS_LIST_PATTERN = /const BLOCKS = (\[[^\]]*\]) as const;/;
 const HOME_PAGE_FILE = path.join(process.cwd(), "app", "page.tsx");
 
+function devOnlyResponse(): NextResponse | null {
+  if (process.env.NODE_ENV === "development") return null;
+  return NextResponse.json(
+    { error: "Il Page Builder è disponibile solo in sviluppo" },
+    { status: 501 },
+  );
+}
+
 function normalizeSlug(raw: string): string {
   return raw === "home" ? "" : raw;
 }
@@ -110,6 +118,9 @@ export default function Page() {
 }
 
 export async function GET(request: Request) {
+  const guard = devOnlyResponse();
+  if (guard) return guard;
+
   const raw =
     new URL(request.url).searchParams.get("slug")?.trim().toLowerCase() ?? "";
   const slug = normalizeSlug(raw);
@@ -137,6 +148,9 @@ export async function GET(request: Request) {
 }
 
 export async function POST(request: Request) {
+  const guard = devOnlyResponse();
+  if (guard) return guard;
+
   let body: {
     pageSlug?: unknown;
     componentsList?: unknown;
