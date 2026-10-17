@@ -35,8 +35,7 @@ tokens.json ──▶ tailwind.config.ts (importa il JSON)
 
 > **Nota Tailwind v4**: niente `tailwind.config` auto-caricato — il file TS viene agganciato da `globals.css` via `@config`. I cambiamenti a `tokens.json` propagano in HMR perché il JSON è una dipendenza del config.
 
-## Props rigide (stile Serenis)
-
+## Props rigide
 I componenti non accettano classi Tailwind arbitrarie: solo props tipizzate derivate dal JSON (`src/types/design-system.ts`):
 
 ```ts
